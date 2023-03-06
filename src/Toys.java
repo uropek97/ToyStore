@@ -1,19 +1,23 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+//import java.util.Random;
 
 public class Toys {
     private List<Toy> toys;
-    private List<Toy> prizeToys;
-    private Random rdm;
 
     public Toys(){
         this.toys = new ArrayList<>();
-        this.prizeToys = new ArrayList<>();
-        this.rdm = new Random();
     }
 
-    public void addToy(Toy toy){
+    public Toys(List<Toy> toys){
+        this.toys = toys;
+    }
+
+    public List<Toy> getToys() {
+        return toys;
+    }
+
+    public void add(Toy toy){
         this.toys.add(toy);
     }
 
