@@ -1,58 +1,43 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Lottery {
-    private List<Integer> numbers;
-    private List<Integer> toys;
+    private Participants participants;
+    private Toys toys;
     private Random rdm;
 
     public Lottery(){
-        this.numbers = new ArrayList<>();
-        this.toys = new ArrayList<>();
+        this.participants = new Participants();
+        this.toys = new Toys();
         this.rdm = new Random();
     }
-    public Lottery(List<Integer> numbers, List<Integer> toys){
-        this.numbers = numbers;
+    public Lottery(Participants participants, Toys toys){
+        this();
+        this.participants = participants;
         this.toys = toys;
-        this.rdm = new Random();
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public Participants getParticipants() {
+        return participants;
     }
 
-    public List<Integer> getToys() {
+    public Toys getToys() {
         return toys;
     }
 
-    private List<Integer> gettingNumbers(Participants participants){
-        List<Integer> numbers = new ArrayList<>();
+    public Toy selectToy(){
+        int randomWeight = this.rdm.nextInt(this.toys.getTotalWeight());
+        int weightCount = 0;
 
-       for(var participant : participants.getParticipants()){
-            numbers.add(participant.getId());
-        }
-        return numbers;
-    }
-
-    public boolean addNumber(int number){
-        if(this.numbers.contains(number)){
-            return false;
-        }
-        else{
-            this.numbers.add(number);
-            return true;
-        }
-    }
-
-    private List<Integer> gettingToys(Toys toys){
-        List<Integer> numbersToys = new ArrayList<>();
-
-        for(var toy : toys.getToys()){
-            if(toy.getAmount() > 0){
-                numbers.add(toy.getId());
+        for(var toy : this.toys.getToys()){
+            weightCount += toy.getWeight();
+            if(randomWeight <= weightCount){
+                return toy;
             }
         }
-        return numbers;
+        return null;
+    }
+
+    public Client selectParticipant(){
+        return this.participants.getParticipants().get(this.rdm.nextInt(this.participants.getParticipants().size()));
     }
 }

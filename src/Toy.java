@@ -3,13 +3,13 @@ public class Toy{
     private int id;
     private String name;
     private int amount;
-    private double chance;
+    private int weight;
 
-    Toy(String name, int amount, double chance){
+    Toy(String name, int amount, int weight){
         this.id = ++idComm;
         this.name = name;
         this.amount = amount;
-        this.chance = chance;
+        this.weight = weight;
     }
 
     public int getId() {
@@ -24,12 +24,12 @@ public class Toy{
         return amount;
     }
 
-    public double getChance() {
-        return chance;
+    public int getWeight() {
+        return weight;
     }
 
-    public void setChance(double chance) {
-        this.chance = chance;
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
     public void reduceAmount(int amount){
