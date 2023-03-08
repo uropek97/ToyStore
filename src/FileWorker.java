@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,6 +18,14 @@ public class FileWorker {
     }
 
     public static <T> T read(String path, Class<T> obj){
+        File file = new File(path);
+        if(!file.exists()) {
+            try {
+            file.createNewFile();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        }
         try(FileReader fr = new FileReader(path)){
             StringBuilder SB = new StringBuilder();
             int ch;

@@ -10,6 +10,7 @@ public class CommandAddToy extends Command{
 
     @Override
     public void Execute(String... params) {
+        var ifChange = false;
         if(params.length > 1){
             if(params.length != 4){
                 this.userInterface.WriteLine("Неверное количество параметров");
@@ -19,6 +20,7 @@ public class CommandAddToy extends Command{
                 var amount = Integer.parseInt(params[2]);
                 var weight = Integer.parseInt(params[3]);
                 this.toys.add(new Toy(name, amount, weight));
+                ifChange = true;
             }
         }
         else{
@@ -26,6 +28,9 @@ public class CommandAddToy extends Command{
             var amount = Integer.parseInt(this.userInterface.Read("Количество игрушек: ", false));
             var weight = Integer.parseInt(this.userInterface.Read("Вес игрушки: ", false));
             this.toys.add(new Toy(name, amount, weight));
+            ifChange = true;
         }
+        if(ifChange)
+            FileWorker.write(Controller.getFileToys(), this.toys);
     }
 }

@@ -8,12 +8,15 @@ public class Client {
         this.id = ++idComm;
         this.sum = 0;
     }
-
-    public Client(int id, String name, double sum){
-        this.id = id;
-        idComm++;
+    public Client(String name, double sum){
+        this();
         this.name = name;
         this.sum = sum;
+    }
+
+    public Client(int id, String name, double sum){
+        this(name, sum);
+        this.id = id;
     }
 
     public int getId() {
