@@ -3,6 +3,7 @@ public class Toy{
     private int id;
     private String name;
     private int amount;
+
     private int weight;
 
     Toy(String name, int amount, int weight){
