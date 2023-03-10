@@ -1,17 +1,21 @@
-import java.util.Set;
-
 public class Toy{
     private static  int idComm;
     private int id;
     private String name;
     private int amount;
-    private double chance;
 
-    Toy(String name, int amount, double chance){
+    private int weight;
+
+    Toy(String name, int amount, int weight){
         this.id = ++idComm;
         this.name = name;
         this.amount = amount;
-        this.chance = chance;
+        this.weight = weight;
+    }
+
+    Toy(int id, String name, int amount, int weight){
+        this(name, amount, weight);
+        this.id = id;
     }
 
     public int getId() {
@@ -26,12 +30,12 @@ public class Toy{
         return amount;
     }
 
-    public double getChance() {
-        return chance;
+    public int getWeight() {
+        return weight;
     }
 
-    public void setChance(double chance) {
-        this.chance = chance;
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
     public void reduceAmount(int amount){
