@@ -6,8 +6,12 @@ public class Toy{
 
     private int weight;
 
-    Toy(String name, int amount, int weight){
+    Toy(){
         this.id = ++idComm;
+    }
+
+    Toy(String name, int amount, int weight){
+        this();
         this.name = name;
         this.amount = amount;
         this.weight = weight;
@@ -26,8 +30,16 @@ public class Toy{
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getAmount() {
         return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public int getWeight() {
@@ -44,6 +56,6 @@ public class Toy{
 
     @Override
     public String toString(){
-        return String.format("ID: %d, Игрушка: %s, Количество: %d", this.id, this.name, this.amount);
+        return String.format("ID: %d, Игрушка: %s, Количество: %d, Вес: %d", this.id, this.name, this.amount, this.weight);
     }
 }

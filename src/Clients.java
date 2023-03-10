@@ -3,8 +3,7 @@ import java.util.List;
 
 public class Clients {
 
-
-    private final List<Client> clients;
+    private  List<Client> clients;
 
     public List<Client> getClients() {
         return clients;
@@ -12,15 +11,14 @@ public class Clients {
 
     public Clients(){
         this.clients = new ArrayList<>();
-        //this.participants = new ArrayList<>();
     }
 
     public Clients(List<Client> clients){
+        this();
         this.clients = clients;
     }
 
     public void add(Client client){
         this.clients.add(client);
-        }
     }
 }

@@ -26,17 +26,17 @@ public class FileWorker {
                 e.printStackTrace();
             }
         }
+        String jsonStr;
+        StringBuilder SB = new StringBuilder();
         try(FileReader fr = new FileReader(path)){
-            StringBuilder SB = new StringBuilder();
             int ch;
             while((ch = fr.read()) != -1){
                 SB.append((char) ch);
             }
-            String jsonStr = SB.toString();
-            return gson.fromJson(jsonStr, obj);
         }catch (IOException e){
             e.printStackTrace();
         }
-        return null;
+        jsonStr = SB.toString();
+        return gson.fromJson(jsonStr, obj);
     }
 }

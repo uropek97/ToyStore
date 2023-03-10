@@ -17,10 +17,10 @@ public class ToyStore {
         this.toys.add(toy);
     }
 
-    public void updateWeight(int id, double chance){
+    public void updateWeight(int id, int weight){
         for(Toy toy : toys){
             if(toy.getId() == id){
-                toy.setChance(chance);
+                toy.setWeight(weight);
                 break;
             }
         }

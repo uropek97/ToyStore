@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,13 +20,26 @@ public class Controller {
 
         var help = new CommandHelp(this, this.userInterface);
         var exit = new CommandExit(this, this.userInterface);
+        var print = new CommandPrint(this, this.userInterface);
         commands = new HashMap<>();
-        commands.put("addToy", new CommandAddToy(this.userInterface, this.toys));
-        commands.put("addClient", new CommandAddClient(this.userInterface, this.clients));
+        commands.put("add", new CommandAdd(this, this.userInterface));
         commands.put("help", help);
         commands.put("?", help);
         commands.put("exit", exit);
         commands.put("quit", exit);
+        commands.put("print", print);
+        commands.put("prt", print);
+
+        var cl = FileWorker.read(fileClients, Clients.class);
+        if(cl != null)
+            this.clients = cl;
+        var t = FileWorker.read(fileToys, Toys.class);
+        if(t != null)
+            this.toys = t;
+        if(this.clients != null)
+            this.participants = new Participants(this.clients);
+
+        this.canWork = true;
     }
 
     public Map<String, Command> getCommands() {
@@ -48,12 +62,24 @@ public class Controller {
         return fileParticipants;
     }
 
+    public Toys getToys() {
+        return toys;
+    }
+
+    public Clients getClients() {
+        return clients;
+    }
+
+    public Participants getParticipants() {
+        return participants;
+    }
+
+    public IUserInterface getUserInterface() {
+        return userInterface;
+    }
+
     public void Start(){
         this.userInterface.WriteLine("Старт работы");
-
-        this.toys = FileWorker.read(fileToys, Toys.class);
-        this.clients = FileWorker.read(fileClients, Clients.class);
-        this.participants = FileWorker.read(fileParticipants, Participants.class);
 
         do{
             var input = this.userInterface.Read("Введите команду: ", false).trim();

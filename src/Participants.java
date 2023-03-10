@@ -38,4 +38,14 @@ public class Participants{
         }
         return participants;
     }
+
+    public boolean add(Client client){
+        if(client.getSum() >= threshold){
+            this.participants.add(client);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

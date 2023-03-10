@@ -27,12 +27,24 @@ public class Client {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public double getSum() {
         return sum;
+    }
+
+    public void setSum(double sum) {
+        this.sum = sum;
     }
 
     public double buy(double buy){
         this.sum += buy;
         return this.sum;
+    }
+    @Override
+    public String toString(){
+        return String.format("%d: Имя: %s, Сумма: %.2f", this.id, this.name, this.sum);
     }
 }
