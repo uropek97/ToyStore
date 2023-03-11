@@ -46,4 +46,13 @@ public class Toys {
         }
         return totalWeight;
     }
+
+    public void reduceAmount(Toy toy, int amount){
+        if(this.toys.contains(toy)) {
+            toy.reduceAmount(amount);
+            if(toy.getAmount() <= 0){
+                this.toys.remove(toy);
+            }
+        }
+    }
 }

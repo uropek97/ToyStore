@@ -9,8 +9,8 @@ public class Participants{
         this.participants = new ArrayList<>();
     }
 
-    public Participants(Clients clients){
-        this.participants = gettingParticipants(clients);
+    public Participants(Clients clients, Clients winners){
+        this.participants = gettingParticipants(clients, winners);
     }
 
     public Participants(List<Client> participants){
@@ -29,13 +29,16 @@ public class Participants{
         Participants.threshold = threshold;
     }
 
-    private List<Client> gettingParticipants(Clients clients){
+    private List<Client> gettingParticipants(Clients clients, Clients winners){
         List<Client> participants = new ArrayList<>();
         for(var client : clients.getClients()){
             if(client.getSum() >= threshold){
                 participants.add(client);
             }
         }
+        for(var winner : winners.getClients())
+                participants.remove(winner);
+
         return participants;
     }
 

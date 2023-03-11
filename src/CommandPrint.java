@@ -27,6 +27,10 @@ public class CommandPrint extends Command{
                 for(var participant : this.controller.getParticipants().getParticipants())
                     this.userInterface.WriteLine(participant.toString());
             }
+            else if(params[1].equals("winners")){
+                for(var winner : this.controller.getWinners().getClients())
+                    this.userInterface.WriteLine(winner.toString());
+            }
             else {
                 this.userInterface.WriteLine("Неизвестный аргумент");
             }
