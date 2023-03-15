@@ -19,14 +19,15 @@ public class CommandAdd extends Command {
             var ifChangeToy = false;
             var ifChangeClient = false;
             if(params[1].equals("toy")){
-                toy.setName(this.userInterface.Read("Название: ", true));
-                toy.setAmount(Integer.parseInt(this.userInterface.Read("Количество: ", true)));
-                toy.setWeight(Integer.parseInt(this.userInterface.Read("Вес в %: ", true)));
+                toy.setName(this.userInterface.Read("Название: ", false));
+                toy.setPrice(Double.parseDouble(this.userInterface.Read("Цена: ", false)));
+                toy.setAmount(Integer.parseInt(this.userInterface.Read("Количество: ", false)));
+                toy.setWeight(Integer.parseInt(this.userInterface.Read("Вес в %: ", false)));
                 ifChangeToy = true;
             }
             else if(params[1].equals("client")){
-                client.setName(this.userInterface.Read("Имя клиента: ", true));
-                client.buy(Double.parseDouble(this.userInterface.Read("Сумма покупки: ", true)));
+                client.setName(this.userInterface.Read("Имя клиента: ", false));
+                client.buy(Double.parseDouble(this.userInterface.Read("Сумма покупки: ", false)));
                 ifChangeClient = true;
             }
             else {

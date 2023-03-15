@@ -22,6 +22,7 @@ public class Controller {
         var help = new CommandHelp(this, this.userInterface);
         var exit = new CommandExit(this, this.userInterface);
         var print = new CommandPrint(this, this.userInterface);
+        var sale = new CommandSale(this, this.userInterface);
         commands = new HashMap<>();
         commands.put("add", new CommandAdd(this, this.userInterface));
         commands.put("help", help);
@@ -31,13 +32,20 @@ public class Controller {
         commands.put("print", print);
         commands.put("prt", print);
         commands.put("lottery", new CommandHoldLottery(this, this.userInterface));
+        commands.put("buy", sale);
+        commands.put("buying", sale);
+        commands.put("sale", sale);
 
         var cl = FileWorker.read(fileClients, Clients.class);
-        if(cl != null)
+        if(cl != null){
             this.clients = cl;
+            this.clients.setCommId();
+        }
         var t = FileWorker.read(fileToys, Toys.class);
-        if(t != null)
+        if(t != null){
             this.toys = t;
+            this.toys.setCommId();
+        }
         var w = FileWorker.read(fileWinners, Clients.class);
         if(w!=null)
             this.winners = w;

@@ -21,4 +21,12 @@ public class Clients {
     public void add(Client client){
         this.clients.add(client);
     }
+    public void setCommId(){
+        int max = 0;
+        for(var client : this.clients){
+            if(max < client.getId())
+                max = client.getId();
+        }
+        Client.setIdComm(max);
+    }
 }

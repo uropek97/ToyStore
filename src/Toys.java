@@ -55,4 +55,12 @@ public class Toys {
             }
         }
     }
+    public void setCommId(){
+        int max = 0;
+        for(var toy : this.toys){
+            if(max < toy.getId())
+                max = toy.getId();
+        }
+        Toy.setIdComm(max);
+    }
 }
