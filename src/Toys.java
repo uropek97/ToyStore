@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.Random;
 
 public class Toys {
     private List<Toy> toys;
@@ -46,5 +45,22 @@ public class Toys {
             totalWeight += toy.getWeight();
         }
         return totalWeight;
+    }
+
+    public void reduceAmount(Toy toy, int amount){
+        if(this.toys.contains(toy)) {
+            toy.reduceAmount(amount);
+            if(toy.getAmount() <= 0){
+                this.toys.remove(toy);
+            }
+        }
+    }
+    public void setCommId(){
+        int max = 0;
+        for(var toy : this.toys){
+            if(max < toy.getId())
+                max = toy.getId();
+        }
+        Toy.setIdComm(max);
     }
 }
